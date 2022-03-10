@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.udemy.nelio.domain.Categoria;
-import com.udemy.nelio.repositories.CategoriaRepository;
 import com.udemy.nelio.services.CategoriaService;
 
 @RestController
@@ -19,15 +18,9 @@ public class CetegoriaResource {
 		@Autowired
 		private CategoriaService service;
 		
-		@Autowired
-		private CategoriaRepository repository;
-	
-	
+		
 		@RequestMapping(value="{id}", method=RequestMethod.GET)
 		public ResponseEntity<?> find(@PathVariable Integer id) {
-			
-			repository.save(new Categoria("Informática"));
-			
 			
 			Categoria obj = service.buscar(id);
 			return ResponseEntity.ok().body(obj);
