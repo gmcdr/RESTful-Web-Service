@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.udemy.nelio.domain.Categoria;
 import com.udemy.nelio.repositories.CategoriaRepository;
+import com.udemy.nelio.services.excpetions.ObejectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -13,6 +14,11 @@ public class CategoriaService {
 	
 		public Categoria buscar(Integer id) {
 			Categoria obj = repository.getById(id);
+			if (obj == null) {
+				throw new ObejectNotFoundException("Obejto não encontrado ! " + id
+						+ "Tipo:  " + Categoria.class.getName());
+				
+			}
 			return obj;
 		}
 }
